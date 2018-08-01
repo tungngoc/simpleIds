@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  helloidentity:
+    image: ${DOCKER_REGISTRY}helloidentity
+    build:
+      context: .
+      dockerfile: HelloIdentity/Dockerfile
+    ports: 
+      - "8080:80"
+      - "8000:443"

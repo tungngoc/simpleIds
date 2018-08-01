@@ -1,0 +1,19 @@
+FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM microsoft/dotnet:2.1-sdk AS build
+WORKDIR /src
+COPY HelloIdentity/HelloIdentity.csproj HelloIdentity/
+RUN dotnet restore HelloIdentity/HelloIdentity.csproj
+COPY . .
+WORKDIR /src/HelloIdentity
+RUN dotnet build HelloIdentity.csproj -c Release -o /app
+
+RUN dotnet publish HelloIdentity.csproj -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "HelloIdentity.dll"]
