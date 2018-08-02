@@ -1,11 +1,13 @@
 FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
 WORKDIR /app
+
 EXPOSE 80
 EXPOSE 443
 
+
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
-RUN dotnet dev-certs https --trust
+RUN dotnet dev-certs https 
 COPY HelloIdentity/HelloIdentity.csproj HelloIdentity/
 RUN dotnet restore HelloIdentity/HelloIdentity.csproj
 COPY . .
