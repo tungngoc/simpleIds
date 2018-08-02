@@ -22,5 +22,18 @@
       },
       "applicationUrl": "http://localhost:5000"
     }
+  },
+  "Kestrel": {
+    "Endpoints": {
+      "HTTPS": {
+        "Url": "https://*:443",
+        "Certificate": {
+          "Path": "certificate.pfx",
+          "Password": "Aa123456"
+        }
+      }
+    }
   }
+
+  
 }

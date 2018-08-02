@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
-RUN dotnet dev-certs https 
+#RUN dotnet dev-certs https 
 COPY HelloIdentity/HelloIdentity.csproj HelloIdentity/
 RUN dotnet restore HelloIdentity/HelloIdentity.csproj
 COPY . .
